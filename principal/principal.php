@@ -27,7 +27,10 @@ session_start();
     </script>
   <header>
   <a href="\principal\principal.php"><img id=logo src="\imagenes\logo-blanco.png"/></a>
-      <img id=nombre src="\imagenes\NOMBRELOGO.png"/>
+  <img id=nombre src="\imagenes\NOMBRELOGO.png"/>
+  <form action="/busqueda/busqueda.php">
+    <input type="text" class="input" placeholder="buscar" name="busqueda" />
+    <input type="submit" class="input" required value="🔍" />
   <?php
   if(!isset($_SESSION["iniciada"])){
   echo "<div class='all-esquina'>
@@ -60,10 +63,6 @@ session_start();
   
                 <li><a class="desplegable" href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></li>
                 <li><a class="desplegable" href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a> </li>
-                <li>
-                  <form action="/busqueda/busqueda.php">
-                    <input type="text" class="input" placeholder="buscar" name="busqueda" />
-                    <input type="submit" class="input" required value="🔍" />
                   </ul>
         </li>
       </ul> 
