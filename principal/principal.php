@@ -1,4 +1,20 @@
-<?php 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "astro_sport";
+
+// Crear conexión
+$conexion = mysqli_connect($servername, $username, $password, $database);
+
+// Verificar la conexión
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+$query = "SELECT foto FROM productos ORDER BY RAND() LIMIT 6";
+$resultado = mysqli_query($conexion, $query);
+
+mysqli_close($conexion);
 session_start();
 ?>
 <html>
@@ -31,6 +47,7 @@ session_start();
   <form action="/busqueda/busqueda.php">
     <input type="text" class="input" placeholder="buscar" name="busqueda" />
     <input type="submit" class="input" required value="🔍" />
+    </form>
   <?php
   if(!isset($_SESSION["iniciada"])){
   echo "<div class='all-esquina'>
@@ -66,12 +83,43 @@ session_start();
                   </ul>
         </li>
       </ul> 
-        <video class="video2" autoplay muted loop>
+       <!-- <video class="video2" autoplay muted loop>
             <source src="/imagenes/videoproductos.mp4" type="video/mp4">
-        </video>
+        </video> -->
+      <div class="galeria">
+        <?php  while ($fila = mysqli_fetch_assoc($resultado)) { 
+          echo '<div><img src="' . $fila['foto'] . '" alt="Imagen de Producto"></div>';
+        } ?>
+      </div>
     </div>
         <nav>
     </nav>
   </body>
 </html>
 
+<script>
+    // Seleccionar todas las imágenes en la galería
+    const images = document.querySelectorAll('.galeria img');
+
+    // Función para cambiar dos imágenes aleatoriamente
+    function changeImages() {
+        // Selecciona dos índices aleatorios de la lista de imágenes
+        let index1 = Math.floor(Math.random() * images.length);
+        let index2 = Math.floor(Math.random() * images.length);
+        while (index1 === index2) { // Asegura que los dos índices sean diferentes
+            index2 = Math.floor(Math.random() * images.length);
+        }
+
+        // Desvanece las imágenes seleccionadas y cambia su fuente de imagen
+        images[index1].classList.add('hidden');
+        images[index2].classList.add('hidden');
+
+        setTimeout(() => {
+            images[index1].classList.remove('hidden');
+            images[index2].classList.remove('hidden');
+        }, 1000); // Cambiar la imagen después de 1 segundo
+    }
+
+    // Ejecutar la función cada 2 segundos
+    setInterval(changeImages, 2000);
+</script>

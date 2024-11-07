@@ -64,10 +64,10 @@ $correo = $_SESSION['correo']; // Correo electrónico desde la sesión
 $fecha_actual = date("Y-m-d"); // Fecha actual en formato YYYY-MM-DD
 
 // Datos de conexión a la base de datos
-$servername = "127.0.0.1";
+$servername = "localhost";
 $database = "astro_sport";
-$username = "alumno";
-$password = "alumnoipm";
+$username = "root";
+$password = "";
 
 // Crear conexión
 $conexion = mysqli_connect($servername, $username, $password, $database);

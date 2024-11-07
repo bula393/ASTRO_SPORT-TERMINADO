@@ -1,10 +1,10 @@
 <?php
     $correo = $_POST["CORREO"];
     $contraseña = $_POST["CONTRASEÑA"];
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $database = "astro_sport";
-    $username = "alumno";
-    $password = "alumnoipm";
+    $username = "root";
+    $password = "";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
