@@ -1,22 +1,4 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "astro_sport";
 
-// Crear conexión
-$conexion = mysqli_connect($servername, $username, $password, $database);
-
-// Verificar la conexión
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
-}
-$query = "SELECT foto FROM productos ORDER BY RAND() LIMIT 6";
-$resultado = mysqli_query($conexion, $query);
-
-mysqli_close($conexion);
-session_start();
-?>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -86,40 +68,90 @@ session_start();
        <!-- <video class="video2" autoplay muted loop>
             <source src="/imagenes/videoproductos.mp4" type="video/mp4">
         </video> -->
-      <div class="galeria">
-        <?php  while ($fila = mysqli_fetch_assoc($resultado)) { 
-          echo '<div><img src="' . $fila['foto'] . '" alt="Imagen de Producto"></div>';
-        } ?>
+        <div class="galeria">
+          <img src="" alt="Imagen de Producto">
+          <img src="" alt="Imagen de Producto">
+          <img src="" alt="Imagen de Producto">
+          <img src="" alt="Imagen de Producto">
+          <img src="" alt="Imagen de Producto">
+          <img src="" alt="Imagen de Producto">
       </div>
-    </div>
+      
+      <script>
+  // Simulación de URLs de imágenes desde una base de datos
+  const imagePaths = [
+    '/imagenes/BOTINES-s-tapones/BotinDeFutsal7.webp', 
+    '/imagenes/BOTINES-s-tapones/BotinDeFutsal8.webp', 
+    '/imagenes/guantes/guantes1.jpg', 
+    '/imagenes/guantes/guantesflat7.jpg', 
+    '/imagenes/musculasas/remeraM1.jpg',  
+    '/imagenes/musculasas/remeraM3.jpg', 
+    '/imagenes/musculasas/remeraM5.webp', 
+    '/imagenes/musculasas/remeraM6.jpg', 
+    '/imagenes/remeras-depor/remera5.jpg', 
+    '/imagenes/remeras-depor/remera6.jpg', 
+    '/imagenes/KitsDeEntrenamiento/barra.jpg',
+    '/imagenes/KitsDeEntrenamiento/guantesbox.jpg', 
+    '/imagenes/Calzado/ZapatillasPaCorrer.avif', 
+    '/imagenes/Calzado/ZapatillasPaCorrer2.avif'
+  ];
+
+  const images = document.querySelectorAll('.galeria img');
+  let availableImages = [...imagePaths];
+
+  // Función para asignar imágenes iniciales únicas
+  function assignInitialImages() {
+    images.forEach((img, index) => {
+      img.src = availableImages[index % availableImages.length];
+    });
+  }
+
+  // Función para cambiar dos imágenes aleatoriamente con desvanecimiento
+  function changeImages() {
+    if (availableImages.length < 2) {
+      availableImages = [...imagePaths];
+    }
+
+    // Selecciona dos índices de imágenes aleatorias
+    const index1 = Math.floor(Math.random() * images.length);
+    let index2;
+    do {
+      index2 = Math.floor(Math.random() * images.length);
+    } while (index1 === index2);
+
+    // Aplicar efecto de desvanecimiento
+    images[index1].classList.add('hidden');
+    images[index2].classList.add('hidden');
+
+    setTimeout(() => {
+      // Cambiar la fuente de las imágenes con una de las disponibles
+      const newImg1 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
+      const newImg2 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
+
+      images[index1].src = newImg1;
+      images[index2].src = newImg2;
+
+      // Volver a mostrar las imágenes después del cambio de src
+      setTimeout(() => {
+        images[index1].classList.remove('hidden');
+        images[index2].classList.remove('hidden');
+
+        // Reinserta las imágenes anteriores en la lista de disponibles
+        availableImages.push(newImg1, newImg2);
+      }, 100); // Delay para el efecto de desvanecimiento
+    }, 1000); // Tiempo de espera para completar la opacidad
+  }
+
+  // Asignar las imágenes iniciales al cargar la página
+  assignInitialImages();
+
+  // Ejecutar la función cada 2 segundos
+  setInterval(changeImages, 4000);
+</script>
+
         <nav>
     </nav>
   </body>
 </html>
 
-<script>
-    // Seleccionar todas las imágenes en la galería
-    const images = document.querySelectorAll('.galeria img');
 
-    // Función para cambiar dos imágenes aleatoriamente
-    function changeImages() {
-        // Selecciona dos índices aleatorios de la lista de imágenes
-        let index1 = Math.floor(Math.random() * images.length);
-        let index2 = Math.floor(Math.random() * images.length);
-        while (index1 === index2) { // Asegura que los dos índices sean diferentes
-            index2 = Math.floor(Math.random() * images.length);
-        }
-
-        // Desvanece las imágenes seleccionadas y cambia su fuente de imagen
-        images[index1].classList.add('hidden');
-        images[index2].classList.add('hidden');
-
-        setTimeout(() => {
-            images[index1].classList.remove('hidden');
-            images[index2].classList.remove('hidden');
-        }, 1000); // Cambiar la imagen después de 1 segundo
-    }
-
-    // Ejecutar la función cada 2 segundos
-    setInterval(changeImages, 2000);
-</script>
