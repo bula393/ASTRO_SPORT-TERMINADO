@@ -75,11 +75,11 @@ INSERT INTO `clientes` (`DNI`, `nombre`, `apellido`, `direccion`, `correo`, `tel
 --
 
 CREATE TABLE `compra` (
+  'id' int,
   `fecha` date DEFAULT NULL,
   `precioFinal` varchar(45) DEFAULT NULL,
   `Cliente_Dni` int(11) DEFAULT NULL,
-  `Producto_Codigo` int(11) DEFAULT NULL,
-  `cantidad` int(11) NOT NULL
+  PRIMARY KEY ('id')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -379,6 +379,22 @@ ALTER TABLE `subcategoria`
 ALTER TABLE `tallas`
   ADD CONSTRAINT `tallas_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 COMMIT;
+
+
+--
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `idcompra` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `cantidad` varchar(45) DEFAULT NULL,
+  PRIMARY KEY('producto_id'),
+  PRIMARY KEY('idcompra'),
+  FOREIGN KEY (`producto_id`) REFERENCES `productos` (`Codigo`),
+  FOREIGN KEY (`idcompra`) REFERENCES `compra` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

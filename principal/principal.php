@@ -65,88 +65,86 @@
                   </ul>
         </li>
       </ul> 
-       <!-- <video class="video2" autoplay muted loop>
+        <video class="video2" autoplay muted loop>
             <source src="/imagenes/videoproductos.mp4" type="video/mp4">
-        </video> -->
-        <div class="galeria">
+        </video> 
+   <!--     <div class="galeria">
           <img src="" alt="Imagen de Producto">
           <img src="" alt="Imagen de Producto">
           <img src="" alt="Imagen de Producto">
           <img src="" alt="Imagen de Producto">
           <img src="" alt="Imagen de Producto">
           <img src="" alt="Imagen de Producto">
-      </div>
+      </div> -->
       
       <script>
   // Simulación de URLs de imágenes desde una base de datos
-  const imagePaths = [
-    '/imagenes/BOTINES-s-tapones/BotinDeFutsal7.webp', 
-    '/imagenes/BOTINES-s-tapones/BotinDeFutsal8.webp', 
-    '/imagenes/guantes/guantes1.jpg', 
-    '/imagenes/guantes/guantesflat7.jpg', 
-    '/imagenes/musculasas/remeraM1.jpg',  
-    '/imagenes/musculasas/remeraM3.jpg', 
-    '/imagenes/musculasas/remeraM5.webp', 
-    '/imagenes/musculasas/remeraM6.jpg', 
-    '/imagenes/remeras-depor/remera5.jpg', 
-    '/imagenes/remeras-depor/remera6.jpg', 
-    '/imagenes/KitsDeEntrenamiento/barra.jpg',
-    '/imagenes/KitsDeEntrenamiento/guantesbox.jpg', 
-    '/imagenes/Calzado/ZapatillasPaCorrer.avif', 
-    '/imagenes/Calzado/ZapatillasPaCorrer2.avif'
-  ];
-
-  const images = document.querySelectorAll('.galeria img');
-  let availableImages = [...imagePaths];
-
-  // Función para asignar imágenes iniciales únicas
-  function assignInitialImages() {
-    images.forEach((img, index) => {
-      img.src = availableImages[index % availableImages.length];
-    });
-  }
-
-  // Función para cambiar dos imágenes aleatoriamente con desvanecimiento
-  function changeImages() {
-    if (availableImages.length < 2) {
-      availableImages = [...imagePaths];
-    }
-
-    // Selecciona dos índices de imágenes aleatorias
-    const index1 = Math.floor(Math.random() * images.length);
-    let index2;
-    do {
-      index2 = Math.floor(Math.random() * images.length);
-    } while (index1 === index2);
-
-    // Aplicar efecto de desvanecimiento
-    images[index1].classList.add('hidden');
-    images[index2].classList.add('hidden');
-
-    setTimeout(() => {
-      // Cambiar la fuente de las imágenes con una de las disponibles
-      const newImg1 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
-      const newImg2 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
-
-      images[index1].src = newImg1;
-      images[index2].src = newImg2;
-
-      // Volver a mostrar las imágenes después del cambio de src
-      setTimeout(() => {
-        images[index1].classList.remove('hidden');
-        images[index2].classList.remove('hidden');
-
-        // Reinserta las imágenes anteriores en la lista de disponibles
-        availableImages.push(newImg1, newImg2);
-      }, 100); // Delay para el efecto de desvanecimiento
-    }, 1000); // Tiempo de espera para completar la opacidad
-  }
-
-  // Asignar las imágenes iniciales al cargar la página
-  assignInitialImages();
-
-  // Ejecutar la función cada 2 segundos
-  setInterval(changeImages, 4000);
+//  const imagePaths = [
+//    '/imagenes/BOTINES-s-tapones/BotinDeFutsal7.webp', 
+//    '/imagenes/BOTINES-s-tapones/BotinDeFutsal8.webp', 
+//    '/imagenes/guantes/guantes1.jpg', 
+//    '/imagenes/guantes/guantesflat7.jpg', 
+//    '/imagenes/musculasas/remeraM1.jpg',  
+//    '/imagenes/musculasas/remeraM3.jpg', 
+//    '/imagenes/musculasas/remeraM5.webp', 
+//    '/imagenes/musculasas/remeraM6.jpg', 
+//    '/imagenes/remeras-depor/remera5.jpg', 
+//    '/imagenes/remeras-depor/remera6.jpg', 
+//    '/imagenes/KitsDeEntrenamiento/barra.jpg',
+//    '/imagenes/KitsDeEntrenamiento/guantesbox.jpg', 
+//    '/imagenes/Calzado/ZapatillasPaCorrer.avif', 
+//    '/imagenes/Calzado/ZapatillasPaCorrer2.avif'
+//  ];
+//
+//  const images = document.querySelectorAll('.galeria img');
+//  let availableImages = [...imagePaths];
+//
+//  // Función para asignar imágenes iniciales únicas
+//  function assignInitialImages() {
+//    images.forEach((img, index) => {
+//      img.src = availableImages[index % availableImages.length];
+//    });
+//  }
+//
+//  // Función para cambiar dos imágenes aleatoriamente con desvanecimiento
+//  function changeImages() {
+//    if (availableImages.length < 2) {
+//      availableImages = [...imagePaths];
+//    }
+//
+//    // Selecciona dos índices de imágenes aleatorias
+//    const index1 = Math.floor(Math.random() * images.length);
+//    let index2;
+//    do {
+//      index2 = Math.floor(Math.random() * images.length);
+//    } while (index1 === index2);
+//
+//    // Aplicar efecto de desvanecimiento
+//    images[index1].classList.add('hidden');
+//images[index2].classList.add('hidden');
+//
+//setTimeout(() => {
+//  const newImg1 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
+//  const newImg2 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
+//
+//  images[index1].src = newImg1;
+//  images[index2].src = newImg2;
+//
+//  setTimeout(() => {
+//    images[index1].classList.remove('hidden');
+//    images[index2].classList.remove('hidden');
+//    availableImages.push(newImg1, newImg2);
+//  }, 4
+//  000);
+//}, 2000);
+// // Tiempo de espera para completar la opacidad
+//  }
+//
+//  // Asignar las imágenes iniciales al cargar la página
+//  assignInitialImages();
+//
+//  // Ejecutar la función cada 2 segundos
+//  setInterval(changeImages, 2000);
 </script>
 
         <nav>

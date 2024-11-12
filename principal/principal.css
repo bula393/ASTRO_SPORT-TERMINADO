@@ -178,7 +178,7 @@ input{
 .galeria {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 10px;
     padding: 20px;
     position: relative;
@@ -188,11 +188,12 @@ input{
     width: 200px;
     height: 200px;
     border-radius: 150px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     opacity: 1;
-    transition: opacity 3s ease-in-out; /* Efecto de desvanecimiento */
+    transition: opacity 1s ease-in-out; /* Cambia a 1s para probar */
     margin: 30px;
-}
-.hidden {
+  }
+  
+  .hidden {
     opacity: 0;
-}
+  }
