@@ -21,10 +21,7 @@ button {
     border-radius: 40px;
 }
 #opciones {
-    margin-block-start: -20px;
     height: 70px;
-    position: absolute;
-    z-index: 9999999999999999999999999999999999999999; 
 }
 #perfil {
     width: 80px;
@@ -50,6 +47,9 @@ button {
     list-style: none;
     margin-left: -40px; 
     text-decoration: none;
+}
+.desplazable > a{
+    gap: 20px;
 }
 ul {
     max-width: 30px;
@@ -103,7 +103,8 @@ ul {
     flex-wrap: wrap;
     justify-content: center;
     text-decoration: none;
-    align-content: center
+    align-content: center;
+    margin-block-end: 10px;
 }
 .sesion{
     text-decoration: none;

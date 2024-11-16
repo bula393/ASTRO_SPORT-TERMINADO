@@ -1,20 +1,21 @@
 <?php
-$codigo_compra=0;
+session_start();
 $idproducto = $_POST['idproducto'];
 $talle = $_POST['talla'];
 $cantidad = $_POST['cantidad'];
-$servername = "127.0.0.1";
+$servername = "localhost";
 $database = "astro_sport";
-$username = "alumno";
-$password = "alumnoipm";
+$username = "root";
+$password = "";
 
 // Crear conexión
 $conexion = mysqli_connect($servername, $username, $password, $database);
 
 if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
-} else {
-            $query = "INSERT INTO carrito VALUES ('$codigo_compra', '$idproducto' , '$cantidad', '$talle')";
+} 
+else {
+            $query = "INSERT INTO carrito VALUES ('{$_SESSION["Ncompra"]}', '$idproducto' , '$cantidad', '$talle')";
             $resultado = mysqli_query($conexion, $query);
 
             if (!$resultado) {

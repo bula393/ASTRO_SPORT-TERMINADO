@@ -155,8 +155,10 @@ select{
     color:#000000;
     flex-wrap: wrap;
     justify-content: center;
+    list-style: none;
     text-decoration: none;
-    align-content: center
+    align-content: center;
+    margin-block-end: 10px;
 }
 .sesion{
     text-decoration: none;

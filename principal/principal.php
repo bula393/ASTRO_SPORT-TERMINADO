@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -26,25 +26,26 @@
   <header>
   <a href="\principal\principal.php"><img id=logo src="\imagenes\logo-blanco.png"/></a>
   <img id=nombre src="\imagenes\NOMBRELOGO.png"/>
+  <a href="\carrito\carrito.php"> <img id=logo src="\imagenes\carrito.png"/> </a>
   <form action="/busqueda/busqueda.php">
     <input type="text" class="input" placeholder="buscar" name="busqueda" />
     <input type="submit" class="input" required value="🔍" />
     </form>
   <?php
-  if(!isset($_SESSION["iniciada"])){
-  echo "<div class='all-esquina'>
-        <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
-      </div>";
-   }
-   else if($_SESSION["iniciada"]){
-   echo "<div class='all-esquina'>
-   <img id=perfil src='\imagenes\perfil.jpg'>
-        <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
-        <div id='correo'>
-          <h2 >".$_SESSION['correo']."</h2>
-        </div>  
-      </div>";
-   }?>
+    if(!isset($_SESSION["iniciada"])){
+    echo "<div class='all-esquina'>
+          <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
+        </div>";
+    }
+    else if($_SESSION["iniciada"]){
+    echo "<div class='all-esquina'>
+    <img id=perfil src='\imagenes\perfil.jpg'>
+          <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
+          <div id='correo'>
+            <h2 >".$_SESSION['correo']."</h2>
+          </div>  
+        </div>";
+    }?>
     </header> 
       <div class='medio'>
       <ul class="nav">    
@@ -53,15 +54,15 @@
 
                 <h1>Equipamiento</h1>
 
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></div></li>
   
                 <h1>Indumentaria</h1>
   
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a> </li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
                   </ul>
         </li>
       </ul> 

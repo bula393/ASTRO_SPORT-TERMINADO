@@ -21,10 +21,7 @@ button {
     border-radius: 40px;
 }
 #opciones {
-    margin-block-start: -20px;
     height: 70px;
-    position: absolute;
-    z-index: 9999999999999999999999999999999999999999; 
 }
 #perfil {
     width: 80px;
@@ -75,7 +72,7 @@ ul {
 }
 .item-container
 {
-    width: 60%;
+    width: 80%;
     height: 100px;
     padding: 10px;
     display: flex;
@@ -85,6 +82,7 @@ ul {
     cursor: pointer;
     text-align: center;
     flex-direction: row;
+    align-items: center;
     border-radius: 20px;
     margin-left: 2%;
     margin-right: 2%;
@@ -101,8 +99,10 @@ ul {
     color:#000000;
     flex-wrap: wrap;
     justify-content: center;
+    list-style: none;
     text-decoration: none;
-    align-content: center
+    align-content: center;
+    margin-block-end: 10px;
 }
 .sesion{
     text-decoration: none;
@@ -161,4 +161,55 @@ ul {
     #correo{
         display: none;
     }
+    .item-container
+        {
+            height: 200px;
+            padding: 10px;
+            display: flex;
+            border: none;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            border-radius: 20px;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+    .nombreproc {
+        display: none;
+    }
+}
+.centro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.nombreproc{
+    display: flex;
+    flex-direction: column;
+}
+.comprar
+{
+    width:100px;
+    height: 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    
+}
+.comprar:hover{
+    background-color:orangered ;
+}
+form{
+    display: flex;
+    flex-direction: row;
 }

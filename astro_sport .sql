@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2024 a las 19:11:31
+-- Tiempo de generación: 17-11-2024 a las 00:41:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,13 +24,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `idcompra` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `cantidad` varchar(45) DEFAULT NULL,
+  `tallaID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`idcompra`, `producto_id`, `cantidad`, `tallaID`) VALUES
+(0, 3, '3', 35),
+(0, 19, '2', 37),
+(0, 2, '1', 32),
+(1, 19, '2', 38),
+(1, 36, '1', 48),
+(1, 88, '2', 50),
+(2, 17, '2', 38),
+(3, 37, '1', 43),
+(3, 44, '1', 44);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categoria`
 --
 
 CREATE TABLE `categoria` (
   `nombre` varchar(45) DEFAULT NULL,
   `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -59,7 +87,7 @@ CREATE TABLE `clientes` (
   `telefono` int(11) DEFAULT NULL,
   `contraseña` varchar(45) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -75,38 +103,22 @@ INSERT INTO `clientes` (`DNI`, `nombre`, `apellido`, `direccion`, `correo`, `tel
 --
 
 CREATE TABLE `compra` (
-  'id' int,
+  `id` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   `precioFinal` varchar(45) DEFAULT NULL,
   `Cliente_Dni` int(11) DEFAULT NULL,
-  PRIMARY KEY ('id')
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
+  `pagado` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Volcado de datos para la tabla `compra`
 --
 
-CREATE TABLE `empleado` (
-  `dni` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `apellido` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `categoria` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estado`
---
-
-CREATE TABLE `estado` (
-  `idEstado` int(11) DEFAULT NULL,
-  `descripcion` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `compra` (`id`, `fecha`, `precioFinal`, `Cliente_Dni`, `pagado`) VALUES
+(0, '2024-11-14', '337', 43525325, 'apple_pay'),
+(1, '2024-11-16', '130', 43525325, 'Mastercard '),
+(2, '2024-11-17', '80', 43525325, 'apple_pay'),
+(3, '2024-11-17', NULL, 43525325, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +133,7 @@ CREATE TABLE `productos` (
   `precio` int(11) DEFAULT NULL,
   `subcategoria_idsubcategoria` int(11) NOT NULL,
   `foto` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -228,27 +240,27 @@ INSERT INTO `productos` (`Codigo`, `marca`, `modelo`, `precio`, `subcategoria_id
 --
 
 CREATE TABLE `subcategoria` (
+  `nombre` varchar(45) DEFAULT NULL,
   `idsubcategoria` int(11) NOT NULL,
-  `categoria_id` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `categoria_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `subcategoria`
 --
 
-INSERT INTO `subcategoria` (`idsubcategoria`, `categoria_id`, `nombre`) VALUES
-(0, 0, 'botines con tapones'),
-(1, 0, 'botines sin tapones'),
-(2, 1, 'Corte Negativo'),
-(3, 1, 'Corte Flat'),
-(4, 2, 'muscualosas'),
-(5, 2, 'deportivas'),
-(6, 3, 'campo'),
-(7, 3, 'gym'),
-(8, 4, 'Pelotas'),
-(9, 4, 'Instrumentos'),
-(10, 5, 'deportivo');
+INSERT INTO `subcategoria` (`nombre`, `idsubcategoria`, `categoria_id`) VALUES
+('botines con tapones', 0, 0),
+('botines sin tapones', 1, 0),
+('Corte Negativo', 2, 1),
+('Corte Flat', 3, 1),
+('muscualosas', 4, 2),
+('deportivas', 5, 2),
+('campo', 6, 3),
+('gym', 7, 3),
+('Pelotas', 8, 4),
+('Instrumentos', 9, 4),
+('Zapas', 10, 5);
 
 -- --------------------------------------------------------
 
@@ -297,6 +309,14 @@ INSERT INTO `tallas` (`id_talla`, `id_categoria`, `nombre_talla`) VALUES
 --
 
 --
+-- Indices de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD KEY `producto_id` (`producto_id`),
+  ADD KEY `idcompra` (`idcompra`),
+  ADD KEY `tallaID` (`tallaID`);
+
+--
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -312,13 +332,8 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `compra`
 --
 ALTER TABLE `compra`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `Cliente_Dni` (`Cliente_Dni`);
-
---
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`dni`);
 
 --
 -- Indices de la tabla `productos`
@@ -332,7 +347,7 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `subcategoria`
   ADD PRIMARY KEY (`idsubcategoria`),
-  ADD KEY `fk_subcategoria_categoria1_idx` (`categoria_id`);
+  ADD KEY `categoria_id` (`categoria_id`);
 
 --
 -- Indices de la tabla `tallas`
@@ -356,6 +371,14 @@ ALTER TABLE `tallas`
 --
 
 --
+-- Filtros para la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`Codigo`),
+  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`idcompra`) REFERENCES `compra` (`id`),
+  ADD CONSTRAINT `carrito_ibfk_3` FOREIGN KEY (`tallaID`) REFERENCES `tallas` (`id_talla`);
+
+--
 -- Filtros para la tabla `compra`
 --
 ALTER TABLE `compra`
@@ -371,7 +394,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  ADD CONSTRAINT `fk_subcategoria_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
+  ADD CONSTRAINT `subcategoria_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
 
 --
 -- Filtros para la tabla `tallas`
@@ -379,22 +402,6 @@ ALTER TABLE `subcategoria`
 ALTER TABLE `tallas`
   ADD CONSTRAINT `tallas_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 COMMIT;
-
-
---
--- Estructura de tabla para la tabla `carrito`
---
-
-CREATE TABLE `carrito` (
-  `idcompra` int(11) NOT NULL,
-  `producto_id` int(11) NOT NULL,
-  `cantidad` varchar(45) DEFAULT NULL,
-  PRIMARY KEY('producto_id'),
-  PRIMARY KEY('idcompra'),
-  FOREIGN KEY (`producto_id`) REFERENCES `productos` (`Codigo`),
-  FOREIGN KEY (`idcompra`) REFERENCES `compra` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

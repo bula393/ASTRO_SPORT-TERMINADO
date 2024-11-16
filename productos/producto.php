@@ -1,9 +1,10 @@
 <?php
 session_start();
 $servername = "127.0.0.1";
+$servername = "localhost";
 $database = "astro_sport";
-$username = "alumno";
-$password = "alumnoipm";
+$username = "root";
+$password = "";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
@@ -15,7 +16,7 @@ $password = "alumnoipm";
         $query = "select  * from productos where Codigo=".$_GET['codigo']."";
         $querys = "select  * from tallas where id_categoria in(select id from categoria where id in(select categoria_id from subcategoria where idsubcategoria in(select subcategoria_idsubcategoria from productos where Codigo=".$_GET['codigo'].")))";
         $consultas= mysqli_query($conexion,$query );
-        $consultass  = mysqli_query($conexion,$querys );
+        $consultass  = mysqli_query($conexion,$querys);
         $fila=mysqli_fetch_assoc($consultas);
     }
 
@@ -54,14 +55,17 @@ $password = "alumnoipm";
         <li>
             <a href="javascript:void(0);" id="opciones"><img id="opciones" src="\imagenes\opciones.png"></a>
             <ul class="desplegable" id="menuDesplegable">
-                <h2>Equipamiento</h2>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></li>
-                <h2>Indumentaria</h2>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></li>
+            <h1>Equipamiento</h1>
+
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></div></li>
+
+                <h1>Indumentaria</h1>
+
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
             </ul>
         </li>
     </ul>  
