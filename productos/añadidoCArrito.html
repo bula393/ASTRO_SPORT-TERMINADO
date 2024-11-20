@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto Añadido al Carrito</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+    }
+
+    .card {
+      text-align: center;
+      background-color: #333;
+      color: orange;
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: orange;
+      color: black;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      margin-right: 15px;
+    }
+
+    .btn:hover {
+      background-color: #ff8c00;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <a href="\principal\principal.php"><img id="logo" src="\imagenes\logo-blanco.png" /></a>
+        <img id="nombre" src="\imagenes\NOMBRELOGO.png" />
+        <?php
+  if(!isset($_SESSION["iniciada"])){
+  echo "<div class='all-esquina'>
+        <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
+      </div>";
+   }
+   else if($_SESSION["iniciada"]){
+   echo "<div class='all-esquina'>
+   <img id=perfil src='\imagenes\perfil.jpg'>
+        <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
+        <div id='correo'>
+          <h2 >".$_SESSION['correo']."</h2>
+        </div>  
+      </div>";
+   }?>
+    </header>
+  <div class="card">
+    <h1>¡Producto añadido al carrito!</h1>
+    <div class="btn-container">
+      <a href="/principal/principal.php" class="btn">Volver a Inicio</a>
+      <a href="/carrito/carrito.php" class="btn">Ir al Carrito</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
