@@ -21,7 +21,7 @@ else {
             if (!$resultado) {
                 die("Error al guardar la compra: " . mysqli_error($conexion));
             } else {
-              header('Location: producto.php?codigo=' . $idproducto);
+              header('Location:añadidoCArrito.html');
             }
 }
 
