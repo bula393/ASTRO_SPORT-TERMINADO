@@ -42,6 +42,8 @@
         $ejec = mysqli_query($conexion, $finalcompra);
         $finalcompra="INSERT INTO compra VALUES ('{$_SESSION['Ncompra']}', '$fecha_hoy',NULL, '{$fila['Cliente_Dni']}', NULL)";
         $ejec = mysqli_query($conexion, $finalcompra);
+        header('Location: paginaDC.html');
+        exit;
     }
     // Redireccionar de vuelta a la página del carrito
     header('Location: carrito.php');
