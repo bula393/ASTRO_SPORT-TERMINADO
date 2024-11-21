@@ -3,11 +3,10 @@ session_start();
 $idproducto = $_POST['idproducto'];
 $talle = $_POST['talla'];
 $cantidad = $_POST['cantidad'];
-$servername = "localhost";
+$servername = "127.0.0.1";
 $database = "astro_sport";
-$username = "root";
-$password = "";
-
+$username = "alumno";
+$password = "alumnoipm";
 // Crear conexión
 $conexion = mysqli_connect($servername, $username, $password, $database);
 

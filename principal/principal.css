@@ -133,8 +133,23 @@ h2 {
     align-content: center;
     margin-block-end: 10px;
 }
+.all-sesion{
+    width: 300px;
+    display: flex;
+    align-items: end;
+    border-radius: 50px;
+    background-color: orange;
+    color:#000000;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    text-decoration: none;
+    align-content: center;
+    margin-block-end: 10px;
+}
 .sesion{
     text-decoration: none;
+    text-align: center
 }
 .sesion:hover{
     color:orangered;
@@ -144,11 +159,24 @@ h2 {
     border-radius: 40px;
 } 
 @media (max-width:450px) {
-    header{
+    .all-sesion{
+        width: 150px;
         display: flex;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        margin: 10px;
+        align-items: end;
+        border-radius: 50px;
+        background-color: orange;
+        color:#000000;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style: none;
+        text-decoration: none;
+        align-content: center;
+        margin-block-end: 10px;
+    }
+    header{
+        display: grid;
+        grid-template-columns: 2fr 2fr ;
+        margin: 30px;
     }
     #logo {
         height: 100px;

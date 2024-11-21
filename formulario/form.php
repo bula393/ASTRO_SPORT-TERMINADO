@@ -8,10 +8,10 @@
     $telefono = $_POST["TELEFONO"];
     $edad = $_POST["EDAD"];
     $correo = $_POST["CORREO"];
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $database = "astro_sport";
-    $username = "root";
-    $password = "";
+    $username = "alumno";
+    $password = "alumnoipm";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 

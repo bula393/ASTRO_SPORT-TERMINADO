@@ -33,12 +33,12 @@
     </form>
   <?php
     if(!isset($_SESSION["iniciada"])){
-    echo "<div class='all-esquina'>
+    echo "<div class='all-sesion'>
           <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
         </div>";
     }
     else if($_SESSION["iniciada"]){
-    echo "<div class='all-esquina'>
+    echo "<div class='all-sesion'>
     <img id=perfil src='\imagenes\perfil.jpg'>
           <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
           <div id='correo'>
@@ -48,8 +48,6 @@
     }?>
     </header> 
       <div class='medio'>
-      <ul class="nav">    
-      <li>
       <ul class="desplegable">
 
                 <h1>Equipamiento</h1>
@@ -64,8 +62,6 @@
                 <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
                 <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
                   </ul>
-        </li>
-      </ul> 
         <video class="video2" autoplay muted loop>
             <source src="/imagenes/videoproductos.mp4" type="video/mp4">
         </video> 

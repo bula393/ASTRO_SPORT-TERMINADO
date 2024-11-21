@@ -170,6 +170,7 @@ ul {
             border-radius: 20px;
             margin-left: 2%;
             margin-right: 2%;
+            grid-template-columns: 1fr 1fr ;    
         }
     .nombreproc {
         display: none;
