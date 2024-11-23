@@ -1,9 +1,9 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
+$servername = "localhost";
 $database = "astro_sport";
-$username = "alumno";
-$password = "alumnoipm";
+$username = "root";
+$password = "12345678";
 
 $conexion = mysqli_connect($servername, $username, $password, $database);
 
@@ -78,48 +78,98 @@ mysqli_close($conexion);
         <h1 class="subseccion"><?php echo strtoupper($fila['nombre']); ?></h1>
     <?php } ?>
 
+    <div class="carrusel">
+    <button class="btn-prev"> &lt; </button>
     <div class="desplazable">
-        <?php while ($fila = mysqli_fetch_assoc($resultados)) { 
-            if($fila['stock']==0){
-                $stock="stock"; ?>
-            <div class='item-stock' >
-            <a ><img class="item_s" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> AGOTADO </h3>
-
-            <?php }
-            else{ ?>
-           
-            <div class='item-container' >
-            <a href="/productos/producto.php?codigo=<?php echo $fila['Codigo']; ?>"><img class="item" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> <?php echo strtoupper($fila['modelo']); ?>  </h3>
-            <?php } ?>
-        </div>
-            <?php } ?>
+        <?php 
+        if ($resultados && mysqli_num_rows($resultados) > 0) {
+            while ($fila = mysqli_fetch_assoc($resultados)) { 
+                if ($fila['stock'] == 0) { ?>
+                    <div class="item-stock">
+                        <a>
+                            <img class="item_s" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto agotado" />
+                        </a>
+                        <h3 class="frase">AGOTADO</h3>
+                    </div>
+                <?php } else { ?>
+                    <div class="item-container">
+                        <a href="/productos/producto.php?codigo=<?php echo htmlspecialchars($fila['Codigo']); ?>">
+                            <img class="item" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto" />
+                        </a>
+                        <h3 class="frase"><?php echo strtoupper(htmlspecialchars($fila['modelo'])); ?></h3>
+                        <h3 class="frase">Precio:$<?php echo $fila['precio']; ?></h3>
+                    </div>
+                <?php } ?>
+            <?php } 
+        } else { ?>
+            <p>No hay productos disponibles.</p>
+        <?php } ?>
     </div>
+    <button class="btn-next"> &gt; </button>
+</div>
+
 
     <?php while ($fila = mysqli_fetch_assoc($resultadot)) { ?>
         <h1 class="subseccion"><?php echo strtoupper($fila['nombre']); ?></h1>
     <?php } ?>
 
+    <div class="carrusel">
+    <button class="btn-prev"> &lt; </button>
     <div class="desplazable">
-        <?php while ($fila = mysqli_fetch_assoc($resultado)) { 
-            if($fila['stock']==0){
-                $stock="stock"; ?>
-            <div class='item-stock' >
-            <a ><img class="item_s" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> AGOTADO </h3>
-
-            <?php }
-            else{ ?>
-           
-            <div class='item-container' >
-            <a href="/productos/producto.php?codigo=<?php echo $fila['Codigo']; ?>"><img class="item" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> <?php echo strtoupper($fila['modelo']); ?>  </h3>
-            <?php } ?>
-        </div>
-            <?php } ?>
+        <?php 
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($fila = mysqli_fetch_assoc($resultado)) { 
+                if ($fila['stock'] == 0) { ?>
+                    <div class="item-stock">
+                        <a>
+                            <img class="item_s" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto agotado" />
+                        </a>
+                        <h3 class="frase">AGOTADO</h3>
+                    </div>
+                <?php } else { ?>
+                    <div class="item-container">
+                        <a href="/productos/producto.php?codigo=<?php echo htmlspecialchars($fila['Codigo']); ?>">
+                            <img class="item" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto" />
+                        </a>
+                        <h3 class="frase"><?php echo strtoupper(htmlspecialchars($fila['modelo'])); ?></h3>
+                        <h3 class="frase">Precio:$<?php echo $fila['precio']; ?></h3>
+                    </div>
+                <?php } ?>
+            <?php } 
+        } else { ?>
+            <p>No hay productos disponibles.</p>
+        <?php } ?>
     </div>
+    <button class="btn-next"> &gt; </button>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleccionar todos los carruseles en la página
+    const carruseles = document.querySelectorAll(".carrusel");
 
+    carruseles.forEach((carrusel) => {
+        const desplazable = carrusel.querySelector(".desplazable");
+        const btnPrev = carrusel.querySelector(".btn-prev");
+        const btnNext = carrusel.querySelector(".btn-next");
+
+        // Desplazar hacia la izquierda
+        btnPrev.addEventListener("click", () => {
+            desplazable.scrollBy({
+                left: -300, // Ajusta el desplazamiento según el tamaño del elemento
+                behavior: "smooth",
+            });
+        });
+
+        // Desplazar hacia la derecha
+        btnNext.addEventListener("click", () => {
+            desplazable.scrollBy({
+                left: 300,
+                behavior: "smooth",
+            });
+        });
+    });
+});
+</script>
 
     <script>
         // Controlar la visibilidad del menú desplegable

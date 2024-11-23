@@ -1,10 +1,10 @@
 <?php
     $correo = $_POST["CORREO"];
     $contraseña = $_POST["CONTRASEÑA"];
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $database = "astro_sport";
-    $username = "alumno";
-    $password = "alumnoipm";
+    $username = "root";
+    $password = "12345678";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
@@ -51,7 +51,7 @@
                 $_SESSION["iniciada"] = true;
                 header('Location: /principal/principal.php');
             } else {
-                echo "Contraseña incorrecta";
+                header('Location: iniciosesion.php?errorC=contraseñamal');
             }
             
         }

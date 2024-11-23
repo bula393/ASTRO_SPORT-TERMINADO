@@ -1,4 +1,23 @@
-<?php session_start(); ?>
+<?php session_start(); 
+$servername = "localhost";
+$database = "astro_sport";
+$username = "root";
+$password = "12345678";
+$compra=0;
+$conexion = mysqli_connect($servername, $username, $password, $database);
+if (!$conexion) {
+    die("Conexion fallida: " . mysqli_connect_error());
+} else {
+    $consulta="select foto from productos;";
+    $resultado = mysqli_query($conexion, $consulta);
+    $imagenes = [];
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+      $imagenes[] = $fila['foto'];
+  }
+}
+mysqli_close($conexion);
+
+?>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -62,87 +81,63 @@
                 <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
                 <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
                   </ul>
-        <video class="video2" autoplay muted loop>
+    <!--     <video class="video2" autoplay muted loop>
             <source src="/imagenes/videoproductos.mp4" type="video/mp4">
-        </video> 
-   <!--     <div class="galeria">
-          <img src="" alt="Imagen de Producto">
-          <img src="" alt="Imagen de Producto">
-          <img src="" alt="Imagen de Producto">
-          <img src="" alt="Imagen de Producto">
-          <img src="" alt="Imagen de Producto">
-          <img src="" alt="Imagen de Producto">
-      </div> -->
+        </video> -->
+        <div class="galeria" id="galeria">
+        <?php
+        // Imprimir las primeras 6 imágenes de la base de datos
+        for ($i = 0; $i < 6; $i++) {
+            if (isset($imagenes[$i])) {
+                echo "<img src='{$imagenes[$i]}' alt='Imagen de Producto'>";
+            } else {
+                echo "<img src='placeholder.jpg' alt='Imagen no disponible'>";
+            }
+        }
+        ?>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const galeria = document.getElementById('galeria');
+            const imagenes = <?php echo json_encode($imagenes); ?>; // Array de imágenes desde PHP
+            const imgs = galeria.querySelectorAll('img');
+            const totalImgs = imgs.length;
+
+            // Función para seleccionar una imagen aleatoria del array de la base de datos
+            function imagenAleatoria() {
+                return imagenes[Math.floor(Math.random() * imagenes.length)];
+            }
+
+            // Función para cambiar dos imágenes al azar
+            function cambiarImagenes() {
+                const index1 = Math.floor(Math.random() * totalImgs);
+                let index2;
+                do {
+                    index2 = Math.floor(Math.random() * totalImgs);
+                } while (index1 === index2);
+
+                // Ocultar las imágenes seleccionadas con desvanecimiento
+                imgs[index1].classList.add('hidden');
+                imgs[index2].classList.add('hidden');
+
+                setTimeout(() => {
+                    // Cambiar las imágenes por nuevas aleatorias
+                    imgs[index1].src = imagenAleatoria();
+                    imgs[index2].src = imagenAleatoria();
+
+                    // Mostrar las nuevas imágenes con desvanecimiento
+                    imgs[index1].classList.remove('hidden');
+                    imgs[index2].classList.remove('hidden');
+                }, 2000); // Tiempo del desvanecimiento (1 segundo)
+            }
+
+            // Cambiar imágenes cada 2 segundos
+            setInterval(cambiarImagenes, 3000);
+        });
+    </script>
       
-      <script>
-  // Simulación de URLs de imágenes desde una base de datos
-//  const imagePaths = [
-//    '/imagenes/BOTINES-s-tapones/BotinDeFutsal7.webp', 
-//    '/imagenes/BOTINES-s-tapones/BotinDeFutsal8.webp', 
-//    '/imagenes/guantes/guantes1.jpg', 
-//    '/imagenes/guantes/guantesflat7.jpg', 
-//    '/imagenes/musculasas/remeraM1.jpg',  
-//    '/imagenes/musculasas/remeraM3.jpg', 
-//    '/imagenes/musculasas/remeraM5.webp', 
-//    '/imagenes/musculasas/remeraM6.jpg', 
-//    '/imagenes/remeras-depor/remera5.jpg', 
-//    '/imagenes/remeras-depor/remera6.jpg', 
-//    '/imagenes/KitsDeEntrenamiento/barra.jpg',
-//    '/imagenes/KitsDeEntrenamiento/guantesbox.jpg', 
-//    '/imagenes/Calzado/ZapatillasPaCorrer.avif', 
-//    '/imagenes/Calzado/ZapatillasPaCorrer2.avif'
-//  ];
-//
-//  const images = document.querySelectorAll('.galeria img');
-//  let availableImages = [...imagePaths];
-//
-//  // Función para asignar imágenes iniciales únicas
-//  function assignInitialImages() {
-//    images.forEach((img, index) => {
-//      img.src = availableImages[index % availableImages.length];
-//    });
-//  }
-//
-//  // Función para cambiar dos imágenes aleatoriamente con desvanecimiento
-//  function changeImages() {
-//    if (availableImages.length < 2) {
-//      availableImages = [...imagePaths];
-//    }
-//
-//    // Selecciona dos índices de imágenes aleatorias
-//    const index1 = Math.floor(Math.random() * images.length);
-//    let index2;
-//    do {
-//      index2 = Math.floor(Math.random() * images.length);
-//    } while (index1 === index2);
-//
-//    // Aplicar efecto de desvanecimiento
-//    images[index1].classList.add('hidden');
-//images[index2].classList.add('hidden');
-//
-//setTimeout(() => {
-//  const newImg1 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
-//  const newImg2 = availableImages.splice(Math.floor(Math.random() * availableImages.length), 1)[0];
-//
-//  images[index1].src = newImg1;
-//  images[index2].src = newImg2;
-//
-//  setTimeout(() => {
-//    images[index1].classList.remove('hidden');
-//    images[index2].classList.remove('hidden');
-//    availableImages.push(newImg1, newImg2);
-//  }, 4
-//  000);
-//}, 2000);
-// // Tiempo de espera para completar la opacidad
-//  }
-//
-//  // Asignar las imágenes iniciales al cargar la página
-//  assignInitialImages();
-//
-//  // Ejecutar la función cada 2 segundos
-//  setInterval(changeImages, 2000);
-</script>
+
 
         <nav>
     </nav>

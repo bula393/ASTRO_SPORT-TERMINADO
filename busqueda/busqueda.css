@@ -22,7 +22,6 @@ button {
 }
 #opciones {
     height: 70px;
-    position: absolute;
     z-index: 9999999999999999999999999999999999999999; 
 }
 #perfil {
@@ -38,6 +37,7 @@ button {
     max-width: 300px;
     height: 800px;
     margin-top: 10px;
+    z-index: 10000;
 }
 .nav li ul.show {
     display: block; /* Muestra el menú cuando tiene la clase 'show' */
@@ -53,20 +53,54 @@ button {
 ul {
     max-width: 30px;
 }
-.desplazable {
-    max-height: 100%;
+.carrusel {
     display: flex;
-    overflow: auto;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.desplazable {
+    display: flex;
+    overflow-x: auto;
     gap: 30px;
-    margin-block-end: 10px;
+    width: 100%; /* Ancho del área visible del carrusel */
 }
 .desplazable::-webkit-scrollbar {
     width: 0%;
 }
-.desplazable .item {
+.item-container, .item-stock {
+    flex: 0 0 auto; /* Los elementos no deben encoger */
+    text-align: center;
+}
+
+.item {
     width: 200px;
     border-radius: 30px;
+}
 
+.item_s {
+    width: 200px;
+    border-radius: 30px;
+    opacity: 0.5; /* Imagen agotada desaturada */
+}
+
+.btn-prev, .btn-next {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-prev:hover, .btn-next:hover {
+    background-color: darkorange;
 }
 
 .subseccion {
@@ -143,6 +177,9 @@ ul {
     #correo{
         display: none;
     }
+    .btn-prev, .btn-next {
+        display: none;
+    }
 }
 input{
     background-color: orange;
@@ -177,3 +214,14 @@ form{
     margin-left: 2%;
     margin-right: 2%;
 }
+h2 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  h3 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }

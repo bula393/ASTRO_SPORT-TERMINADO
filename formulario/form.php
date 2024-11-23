@@ -8,10 +8,10 @@
     $telefono = $_POST["TELEFONO"];
     $edad = $_POST["EDAD"];
     $correo = $_POST["CORREO"];
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $database = "astro_sport";
-    $username = "alumno";
-    $password = "alumnoipm";
+    $username = "root";
+    $password = "12345678";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
@@ -20,6 +20,16 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
+        
+        $query_email="select * from clientes;";
+        $resultado_email=mysqli_query($conexion, $query_email);
+        while($fila = mysqli_fetch_assoc($resultado_email)){
+            if($fila['correo'] === $correo ){
+                header('Location: FORMULARIO.php?errorC=contraseñamal');
+                exit;
+            }
+        }
+        
         //insertamos el resultado del formulario
         $query = "insert into clientes values('$dni', '$nombre', '$apellido', '$direccion', '$correo' ,'$telefono','$contraseña','$edad');";
         $resultado=mysqli_query($conexion, $query);

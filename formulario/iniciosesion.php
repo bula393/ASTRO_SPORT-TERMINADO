@@ -22,6 +22,23 @@
                     <input type="submit" class="input" value="INICIAR"/>
                 </form>
             </div>
+            
+            <?php if($_GET['errorC'] === 'contraseñamal'){ ?>
+               
+              <div class="overlay" id="cartel">
+                <div class="mensaje">
+                    <button class="cerrar" onclick="cerrarCartel()">×</button>
+                    <h2>Contraseña Incorrecta</h2>
+                </div>
+              </div>
+            <?php } ?>
+
+    <script>
+        // Función para cerrar el cartel
+        function cerrarCartel() {
+            document.getElementById('cartel').style.display = 'none';
+        }
+    </script>
     </nav>
   </body>
 </html>

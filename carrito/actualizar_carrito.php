@@ -1,9 +1,9 @@
 <?php
     session_start();
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $database = "astro_sport";
-    $username = "alumno";
-    $password = "alumnoipm";
+    $username = "root";
+    $password = "12345678";
     $conexion = mysqli_connect($servername, $username, $password, $database);
     if (isset($_GET['accion'], $_GET['idcompra'], $_GET['producto_id'], $_GET['tallaID'])) {
         $accion = $_GET['accion'];

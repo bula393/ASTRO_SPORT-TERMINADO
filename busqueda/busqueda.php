@@ -1,9 +1,9 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
+$servername = "localhost";
 $database = "astro_sport";
-$username = "alumno";
-$password = "alumnoipm";
+$username = "root";
+$password = "12345678";
 
 $conexion = mysqli_connect($servername, $username, $password, $database);
 
@@ -48,14 +48,17 @@ if (!$conexion) {
         <li>
             <a href="javascript:void(0);" id="opciones"><img id="opciones" src="\imagenes\opciones.png"></a>
             <ul class="desplegable" id="menuDesplegable">
-                <h2>Equipamiento</h2>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></li>
-                <h2>Indumentaria</h2>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></li>
-                <li><a class="desplegable" href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></li>
+            <h1>Equipamiento</h1>
+
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></div></li>
+
+                <h1>Indumentaria</h1>
+
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
+                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
             </ul>
         </li>
     </ul>
@@ -65,26 +68,63 @@ if (!$conexion) {
                     <input type="submit" class="input" required value="🔍" />
     </form>
 
+    <div class="carrusel">
+    <button class="btn-prev"> &lt; </button>
     <div class="desplazable">
-        <?php while ($fila = mysqli_fetch_assoc($resultados)) { 
-            if($fila['stock']==0){
-                $stock="stock"; ?>
-            <div class='item-stock' >
-            <a ><img class="item_s" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> AGOTADO </h3>
-
-            <?php }
-            else{ ?>
-           
-            <div class='item-container' >
-            <a href="/productos/producto.php?codigo=<?php echo $fila['Codigo']; ?>"><img class="item" src="<?php echo $fila['foto']; ?>" /></a>
-            <h3 class='frase'> <?php echo strtoupper($fila['modelo']); ?>  </h3>
-            <?php } ?>
-        </div>
-            <?php } ?>
+        <?php 
+        if ($resultados && mysqli_num_rows($resultados) > 0) {
+            while ($fila = mysqli_fetch_assoc($resultados)) { 
+                if ($fila['stock'] == 0) { ?>
+                    <div class="item-stock">
+                        <a>
+                            <img class="item_s" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto agotado" />
+                        </a>
+                        <h3 class="frase">AGOTADO</h3>
+                    </div>
+                <?php } else { ?>
+                    <div class="item-container">
+                        <a href="/productos/producto.php?codigo=<?php echo htmlspecialchars($fila['Codigo']); ?>">
+                            <img class="item" src="<?php echo htmlspecialchars($fila['foto']); ?>" alt="Imagen del producto" />
+                        </a>
+                        <h3 class="frase"><?php echo strtoupper(htmlspecialchars($fila['modelo'])); ?></h3>
+                        <h3 class="frase">Precio:<?php echo $fila['precio']; ?></h3>
+                    </div>
+                <?php } ?>
+            <?php } 
+        } else { ?>
+            <p>No hay productos disponibles.</p>
+        <?php } ?>
     </div>
-    </div>
+    <button class="btn-next"> &gt; </button>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleccionar todos los carruseles en la página
+    const carruseles = document.querySelectorAll(".carrusel");
 
+    carruseles.forEach((carrusel) => {
+        const desplazable = carrusel.querySelector(".desplazable");
+        const btnPrev = carrusel.querySelector(".btn-prev");
+        const btnNext = carrusel.querySelector(".btn-next");
+
+        // Desplazar hacia la izquierda
+        btnPrev.addEventListener("click", () => {
+            desplazable.scrollBy({
+                left: -300, // Ajusta el desplazamiento según el tamaño del elemento
+                behavior: "smooth",
+            });
+        });
+
+        // Desplazar hacia la derecha
+        btnNext.addEventListener("click", () => {
+            desplazable.scrollBy({
+                left: 300,
+                behavior: "smooth",
+            });
+        });
+    });
+});
+</script>
     <script>
         // Controlar la visibilidad del menú desplegable
         document.getElementById('opciones').addEventListener('click', function() {
