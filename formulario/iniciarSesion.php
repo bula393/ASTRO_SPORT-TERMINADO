@@ -1,10 +1,10 @@
 <?php
     $correo = $_POST["CORREO"];
     $contraseña = $_POST["CONTRASEÑA"];
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $database = "astro_sport";
-    $username = "root";
-    $password = "12345678";
+    $username = "alumno";
+    $password = "alumnoipm";
     
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
@@ -19,8 +19,7 @@
         $resultado=mysqli_query($conexion, $query);
         //la variable resultado va a guardar el resultado del comando donde se realiza la consulta
         if(mysqli_num_rows($resultado)  == 0){
-            echo "Error";
-            echo $correo;
+            header('Location: iniciosesion.php?errorC=no email');
         }
         else {
             $fila=mysqli_fetch_assoc($resultado);

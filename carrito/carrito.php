@@ -1,9 +1,9 @@
 <?php
 session_start();
-$servername = "localhost";
+$servername = "127.0.0.1";
 $database = "astro_sport";
-$username = "root";
-$password = "12345678";
+$username = "alumno";
+$password = "alumnoipm";
 $compra=0;
 $conexion = mysqli_connect($servername, $username, $password, $database);
 if (!$conexion) {

@@ -1,12 +1,14 @@
-
-.input{
-
-        width: 30%;
+a{
+    text-decoration: none;
+}
+.input{     
         padding: 15px;
-        margin-block: 5px;
+        margin: 5px;
         border-radius: 100px;
         box-sizing: border-box;
         text-align: center;
+        width: 85%;
+        background-color: orange;
 }
 body{
     background-color: black;
@@ -35,15 +37,31 @@ header{
     margin-left: 30px;
     margin-right: 30px;
 }
-form{
-    margin-top: 50px;
-    position: relative;
+form {
+    position: absolute; /* Posición absoluta para centrar */
+    top: 50%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Ajusta la posición al centro */
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}   
+    width: 55%;
+    padding: 20px; /* Espaciado interno */
+    background-color: #2e2e2e; /* Gris oscuro */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    border: 2px solid #3a3a3a; /* Borde más oscuro */
+}
+
+/* Ajuste para dispositivos pequeños */
+@media (max-width: 450px) {
+    form {
+        width: 80%; /* Reduce el ancho en pantallas pequeñas */
+        padding: 15px;
+    }
+}
 .all-esquina{
     width: 300px;
     display: flex;

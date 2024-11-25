@@ -15,31 +15,37 @@
         </div>
     </header>
         <nav>
-            <div id="pipip">
-                <form action="iniciarSesion.php" method="post">  
-                    <input type="text "  required class="input" placeholder="CORREO" name="CORREO"/>
-                    <input type="password"  required class="input" placeholder="CONTRASEÑA" name="CONTRASEÑA"/>
-                    <input type="submit" class="input" value="INICIAR"/>
-                </form>
-            </div>
-            
-            <?php if($_GET['errorC'] === 'contraseñamal'){ ?>
-               
-              <div class="overlay" id="cartel">
-                <div class="mensaje">
-                    <button class="cerrar" onclick="cerrarCartel()">×</button>
-                    <h2>Contraseña Incorrecta</h2>
-                </div>
-              </div>
-            <?php } ?>
+                      <form action="iniciarSesion.php" method="post">  
+                          <input type="text "  required class="input" placeholder="CORREO" name="CORREO"/>
+                          <input type="password"  required class="input" placeholder="CONTRASEÑA" name="CONTRASEÑA"/>
+                          <input type="submit" class="input" value="INICIAR"/>
+                      </form>
 
-    <script>
-        // Función para cerrar el cartel
-        function cerrarCartel() {
-            document.getElementById('cartel').style.display = 'none';
-        }
-    </script>
-    </nav>
+        <script>
+            // Función para cerrar el cartel
+            function cerrarCartel() {
+                document.getElementById('cartel').style.display = 'none';
+            }
+        </script>
+        </nav>
+          <?php if($_GET['errorC'] === 'contraseñamal'){ ?>
+               
+               <div class="overlay" id="cartel">
+                 <div class="mensaje">
+                     <button class="cerrar" onclick="cerrarCartel()">×</button>
+                     <h2>Contraseña Incorrecta</h2>
+                 </div>
+               </div>
+             <?php } ?>
+             <?php if($_GET['errorC'] === 'no email'){ ?>
+               
+               <div class="overlay" id="cartel">
+                 <div class="mensaje">
+                     <button class="cerrar" onclick="cerrarCartel()">×</button>
+                     <h2>Email no registrado</h2>
+                 </div>
+               </div>
+             <?php } ?>
   </body>
 </html>
 
