@@ -14,9 +14,14 @@ if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
 } 
 else {
-            $query = "INSERT INTO carrito VALUES ('{$_SESSION["Ncompra"]}', '$idproducto' , '$cantidad', '$talle')";
-            $resultado = mysqli_query($conexion, $query);
-
+            if($talle === ''){
+              $query = "INSERT INTO carrito VALUES ('{$_SESSION["Ncompra"]}', '$idproducto' , '$cantidad', NULL)";
+              $resultado = mysqli_query($conexion, $query);
+            }  
+            else{
+              $query = "INSERT INTO carrito VALUES ('{$_SESSION["Ncompra"]}', '$idproducto' , '$cantidad', '$talle')";
+              $resultado = mysqli_query($conexion, $query);
+            } 
             if (!$resultado) {
                 die("Error al guardar la compra: " . mysqli_error($conexion));
             } else {

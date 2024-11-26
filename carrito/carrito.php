@@ -69,8 +69,11 @@ if (!$conexion) {
                     $consultas = "SELECT * FROM productos WHERE codigo = " . $fila['producto_id'] . ";";
                     $resultados = mysqli_query($conexion, $consultas);
                     $filas = mysqli_fetch_assoc($resultados);
-                    $consultast = "SELECT * FROM tallas WHERE id_talla = " . $fila['tallaID'] . ";";
-                    $resultadost = mysqli_query($conexion, $consultast);
+                    if($fila['tallaID'] != NULL){
+                        $consultast = "SELECT * FROM tallas WHERE id_talla = " . $fila['tallaID'] . ";";
+                        $resultadost = mysqli_query($conexion, $consultast);
+                    }
+                    
                     $ftalles = mysqli_fetch_assoc($resultadost);
                     $total=$total+($filas['precio']*$fila['cantidad']);
                     ?>
@@ -88,7 +91,9 @@ if (!$conexion) {
                         </div>
                          <h1>Precio:   $<?php  echo $filas['precio']*$fila['cantidad']  ?> </h1>
                          <div class="nombreproc"><h1><?php echo $filas['marca']; ?> </h1><h1>---</h1><h1> <?php echo $filas['modelo']; ?></h1></div>
+                         <?php if($fila['tallaID'] != NULL){ ?>
                          <div class="nombreproc"><h1 >Talle:<?php echo $ftalles['nombre_talla'] ?> </h1> </div>
+                         <?php } ?>
                          <div class="borrar"><a class="boton" href="actualizar_carrito.php?accion=borrar&idcompra=<?php echo $fila['idcompra']; ?>&producto_id=<?php echo $fila['producto_id']; ?>&tallaID=<?php echo $fila['tallaID']; ?>">
                                 <h1> x </h1>
                             </a>

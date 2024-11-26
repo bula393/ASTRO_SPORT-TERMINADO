@@ -73,7 +73,8 @@ $password = "alumnoipm";
       <div class="especificaciones">
 
       <h1>    
-        <?php echo strtoupper($fila['marca']) ?> 
+        
+          <?php if($fila['marca']!=NULL){ echo strtoupper($fila['marca']);} ?> 
       </h1> 
 
       <h1 >

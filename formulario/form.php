@@ -1,7 +1,6 @@
-
 <?php
-	  $nombre= $_POST["NOMBRE"];
-	  $apellido = $_POST["APELLIDO"];
+    $nombre= $_POST["NOMBRE"];
+    $apellido = $_POST["APELLIDO"];
     $direccion = $_POST["DIRECCION"];
     $contraseña = $_POST["CONTRASEÑA"];
     $dni = $_POST["DNI"];

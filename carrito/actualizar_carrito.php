@@ -13,13 +13,30 @@
 
         // Definir la consulta SQL según la acción
         if ($accion === 'restar') {
-            $cambiarcant = "UPDATE carrito SET cantidad = if(cantidad-1>0,cantidad-1,cantidad) WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
+            if($tallaID != ''){
+                $cambiarcant = "UPDATE carrito SET cantidad = if(cantidad-1>0,cantidad-1,cantidad) WHERE idcompra = $idcompra AND producto_id = $producto_id ";
+            }
+            else{
+                $cambiarcant = "UPDATE carrito SET cantidad = if(cantidad-1>0,cantidad-1,cantidad) WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
+            }
+        
         } elseif ($accion === 'sumar') {
-            $cambiarcant = "UPDATE carrito SET cantidad = cantidad + 1 WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
+            
+            if($tallaID != ''){
+                $cambiarcant = "UPDATE carrito SET cantidad = cantidad + 1 WHERE idcompra = $idcompra AND producto_id = $producto_id";
+            }
+            else{
+                $cambiarcant = "UPDATE carrito SET cantidad = cantidad + 1 WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
+            }
         } elseif ($accion === 'borrar'){
-            $cambiarcant = "DELETE from carrito WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
-        }
-
+            
+            if($tallaID != ''){
+                $cambiarcant = "DELETE from carrito WHERE idcompra = $idcompra AND producto_id = $producto_id";
+            }
+            else{
+                $cambiarcant = "DELETE from carrito WHERE idcompra = $idcompra AND producto_id = $producto_id AND tallaID = $tallaID";
+                }
+            }
         // Ejecutar la consulta
         if (isset($cambiarcant)) {
             $ejec = mysqli_query($conexion, $cambiarcant);
