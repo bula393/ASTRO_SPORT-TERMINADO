@@ -24,8 +24,13 @@ button {
     border-radius: 40px;
 }
 #opciones {
-    height: 70px;
+    height: 45px;
 }
+a{
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
 #perfil {
     width: 80px;
     border-radius: 40px;
@@ -151,8 +156,13 @@ ul {
 .frase{
     margin-top: -5px;
 }
-.all-esquina{
-    width: 300px;
+h4 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  .all-esquina{
+    width: 230px;
     display: flex;
     align-items: end;
     border-radius: 50px;
@@ -160,9 +170,27 @@ ul {
     color:#000000;
     flex-wrap: wrap;
     justify-content: center;
+    list-style: none;
     text-decoration: none;
     align-content: center;
     margin-block-end: 10px;
+    height: 50px;
+}
+.all-sesion{
+    width: 180px;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    background-color: orange;
+    color:#000000;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    text-decoration: none;
+    align-content: center;
+    margin-block-end: 10px;
+    height: 50px;
+    margin-top: 10px;
 }
 .sesion{
     text-decoration: none;
@@ -171,7 +199,7 @@ ul {
     color:orangered;
 }
 #perfil{
-    width: 60px;
+    width: 40px;
     border-radius: 40px;
 } 
 .subseccion {
@@ -207,6 +235,11 @@ ul {
         display: none;
     }
 }
+h1 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
 h2 {
     font-family: "Rowdies", sans-serif;
     font-weight: 200;
@@ -214,6 +247,11 @@ h2 {
   }
   
   h3 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  h4 {
     font-family: "Rowdies", sans-serif;
     font-weight: 200;
     font-style: normal;

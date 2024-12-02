@@ -37,20 +37,18 @@ mysqli_close($conexion);
         <a href="\principal\principal.php"><img id="logo" src="\imagenes\logo-blanco.png" /></a>
         <img id="nombre" src="\imagenes\NOMBRELOGO.png" />
         <?php
-  if(!isset($_SESSION["iniciada"])){
-  echo "<div class='all-esquina'>
-        <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
-      </div>";
-   }
-   else if($_SESSION["iniciada"]){
-   echo "<div class='all-esquina'>
-   <img id=perfil src='\imagenes\perfil.jpg'>
-        <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
-        <div id='correo'>
-          <h2 >".$_SESSION['correo']."</h2>
-        </div>  
-      </div>";
-   }?>
+    if(!isset($_SESSION["iniciada"])){
+    echo "<div class='all-sesion'>
+          <a class='sesion' href='/formulario/iniciosesion.php'><h4>INICIAR SESION</h4></a>
+        </div>";
+    }
+    else if($_SESSION["iniciada"]){
+    echo "<div class='all-sesion'>
+    <img id=perfil src='\imagenes\perfil.jpg'>
+          <a class='sesion' href='/opcionesU/cerrarSesion.php'><h5>CERRA SESION</h5></a>
+
+        </div>";
+    }?>
     </header>
     
     <h1 class="subseccion"><?php echo strtoupper($_GET['categoria']); ?></h1>
@@ -59,18 +57,18 @@ mysqli_close($conexion);
         <li>
             <a href="javascript:void(0);" id="opciones"><img id="opciones" src="\imagenes\opciones.png"></a>
             <ul class="desplegable" id="menuDesplegable">
-            <h1>Equipamiento</h1>
+                    <h1>Equipamiento</h1>
 
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h4>Botines</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h4>Guantes de arquero</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h4>Remeras de entrenamiento</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h4>Kits de entrenamiento</h4></a></div></li>
 
-                <h1>Indumentaria</h1>
+                    <h1>Indumentaria</h1>
 
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
-            </ul>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h4>Accesorios</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h4>Calzado</h4></a></div> </li>
+                </ul>
         </li>
     </ul>
 

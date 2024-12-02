@@ -30,20 +30,18 @@ if (!$conexion) {
         <a href="\principal\principal.php"><img id="logo" src="\imagenes\logo-blanco.png" /></a>
         <img id="nombre" src="\imagenes\NOMBRELOGO.png" />
         <?php
-  if(!isset($_SESSION["iniciada"])){
-  echo "<div class='all-esquina'>
-        <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
-      </div>";
-   }
-   else if($_SESSION["iniciada"]){
-   echo "<div class='all-esquina'>
-   <img id=perfil src='\imagenes\perfil.jpg'>
-        <a class='sesion' href='/opcionesU/cerrarSesion.php'><h2>CERRA SESION</h2></a>
-        <div id='correo'>
-          <h2 >".$_SESSION['correo']."</h2>
-        </div>  
-      </div>";
-   }?>
+    if(!isset($_SESSION["iniciada"])){
+    echo "<div class='all-sesion'>
+          <a class='sesion' href='/formulario/iniciosesion.php'><h4>INICIAR SESION</h4></a>
+        </div>";
+    }
+    else if($_SESSION["iniciada"]){
+    echo "<div class='all-sesion'>
+    <img id=perfil src='\imagenes\perfil.jpg'>
+          <a class='sesion' href='/opcionesU/cerrarSesion.php'><h5>CERRA SESION</h5></a>
+
+        </div>";
+    }?>
     </header>
     <ul class="nav">    
         <li>
@@ -51,16 +49,16 @@ if (!$conexion) {
             <ul class="desplegable" id="menuDesplegable">
             <h1>Equipamiento</h1>
 
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h3>Botines</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h3>Guantes de arquero</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h3>Remeras de entrenamiento</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h3>Kits de entrenamiento</h3></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Botines"><h4>Botines</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Guantes de Arquero"><h4>Guantes de arquero</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Remeras"><h4>Remeras de entrenamiento</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=kits de entrenamiento"><h4>Kits de entrenamiento</h4></a></div></li>
 
-                <h1>Indumentaria</h1>
+                    <h1>Indumentaria</h1>
 
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h3>Accesorios</h3></a></div></li>
-                <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h3>Calzado</h3></a></div> </li>
-            </ul>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Accesorios"><h4>Accesorios</h4></a></div></li>
+                    <li><div class="all-esquina"><a  href="\seccion\seccion.php?categoria=Calzado"><h4>Calzado</h4></a></div> </li>
+                </ul>
         </li>
     </ul>
     <div class=centro>
@@ -84,15 +82,15 @@ if (!$conexion) {
                             <a class="boton" href="actualizar_carrito.php?accion=restar&idcompra=<?php echo $fila['idcompra']; ?>&producto_id=<?php echo $fila['producto_id']; ?>&tallaID=<?php echo $fila['tallaID']; ?>">
                                 <h1> < </h1>
                             </a>
-                            <h1><?php echo $fila['cantidad']; ?></h1>
+                            <h2><?php echo $fila['cantidad']; ?></h2>
                             <a class="boton" href="actualizar_carrito.php?accion=sumar&idcompra=<?php echo $fila['idcompra']; ?>&producto_id=<?php echo $fila['producto_id']; ?>&tallaID=<?php echo $fila['tallaID']; ?>">
                                 <h1> > </h1>
                             </a>
                         </div>
-                         <h1>Precio:   $<?php  echo $filas['precio']*$fila['cantidad']  ?> </h1>
-                         <div class="nombreproc"><h1><?php echo $filas['marca']; ?> </h1><h1>---</h1><h1> <?php echo $filas['modelo']; ?></h1></div>
+                         <h2>Precio:   $<?php  echo $filas['precio']*$fila['cantidad']  ?> </h2>
+                         <div class="nombreproc"><h2><?php echo $filas['marca']; ?> </h2><h2>---</h2><h2> <?php echo $filas['modelo']; ?></h2></div>
                          <?php if($fila['tallaID'] != NULL){ ?>
-                         <div class="nombreproc"><h1 >Talle:<?php echo $ftalles['nombre_talla'] ?> </h1> </div>
+                         <div class="nombreproc"><h2 >Talle:<?php echo $ftalles['nombre_talla'] ?> </h2> </div>
                          <?php } ?>
                          <div class="borrar"><a class="boton" href="actualizar_carrito.php?accion=borrar&idcompra=<?php echo $fila['idcompra']; ?>&producto_id=<?php echo $fila['producto_id']; ?>&tallaID=<?php echo $fila['tallaID']; ?>">
                                 <h1> x </h1>
@@ -105,7 +103,7 @@ if (!$conexion) {
             }
                 ?>
         <div class="item-container">
-            <h1>Metodos de pago:</h1>
+            <h2>Metodos de pago:</h2>
             <form method="post" action="actualizar_carrito.php?precioFinal= <?php echo $total; ?>&idcompra=<?php echo $_SESSION['Ncompra'] ?> ">
                     <select name="metodo_pago" id="">
                         <option value="pay_pal">Pay Pal</option>
@@ -114,7 +112,7 @@ if (!$conexion) {
                     </select>
                     <input class="comprar" type="submit" value="Comprar" />
             </form>
-            <h1>Total:   $<?php echo $total ?></h1>
+            <h2>Total:   $<?php echo $total ?></h2>
         </div>
     </div>   
     <script>

@@ -26,7 +26,7 @@ button h1:hover{
 }
 header{
     display: grid;
-    grid-template-columns: 2fr 2fr 0.5fr 0.7fr 1fr;
+    grid-template-columns: 2fr 2fr 0.5fr 1fr 1fr;
     margin: 30px;
 }
 #opciones {
@@ -56,7 +56,17 @@ lavel #opciti:hover > label{
 ul{
     max-width: 300px;
 }
-
+h5 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    padding: 5px;
+  }
+h1 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
 h2 {
     font-family: "Rowdies", sans-serif;
     font-weight: 200;
@@ -64,6 +74,11 @@ h2 {
   }
   
   h3 {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  h4 {
     font-family: "Rowdies", sans-serif;
     font-weight: 200;
     font-style: normal;
@@ -122,7 +137,7 @@ h2 {
 }
 
 .all-esquina{
-    width: 300px;
+    width: 230px;
     display: flex;
     align-items: end;
     border-radius: 50px;
@@ -134,11 +149,12 @@ h2 {
     text-decoration: none;
     align-content: center;
     margin-block-end: 10px;
+    height: 50px;
 }
 .all-sesion{
-    width: 300px;
+    width: 180px;
     display: flex;
-    align-items: end;
+    align-items: center;
     border-radius: 50px;
     background-color: orange;
     color:#000000;
@@ -148,6 +164,8 @@ h2 {
     text-decoration: none;
     align-content: center;
     margin-block-end: 10px;
+    height: 50px;
+    margin-top: 10px;
 }
 .sesion{
     text-decoration: none;
@@ -157,7 +175,7 @@ h2 {
     color:orangered;
 }
 #perfil{
-    width: 60px;
+    width: 40px;
     border-radius: 40px;
 } 
 @media (max-width:450px) {
@@ -206,8 +224,8 @@ h2 {
 }   
 input{
     background-color: orange;
-    padding: 5px;
-    border-radius: 10px;
+    padding: 8px;
+    border-radius: 30px;
     border: none;
     max-width: 100px;
 }
@@ -219,7 +237,9 @@ input{
     padding: 20px;
     position: relative;
 }
-
+form{
+    margin-top: 18px;
+}
 
   .galeria img {
     width: 200px;

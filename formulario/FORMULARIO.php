@@ -11,7 +11,7 @@
       <a href="../principal/principal.php"><img id=logo src="../imagenes/logo-blanco.png"/></a>
       <img id=nombre src="../imagenes/NOMBRELOGO.png"/>
       <div class='all-esquina'>
-        <a class='sesion' href='/formulario/iniciosesion.php'><h2>INICIAR SESION</h2></a>
+        <a class='sesion' href='/formulario/iniciosesion.php'><h3>INICIAR SESION</h3></a>
       </div>
     </header>
         <nav>
